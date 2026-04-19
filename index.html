@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    </head>
+
+<body>
+    <section>
+        <h1>Simple Calculator</h1>
+        <input placeholder="Enter your Number" id="num1">
+        <input placeholder="Enter your number" id="num2">
+        <button class="btn" id="+">+</button>
+        <button class="btn" id="-">-</button>
+        <button class="btn" id="*">*</button>
+        <button class="btn" id="/">/</button>
+        <button class="btn" id="%">%</button>
+        <!-- <button class="btn" id="square">(²)</button>
+        <button class="btn" id="cube">(³)</button> -->
+        <button class="btn" id="clear">Clear</button>
+        <h3 id="result"></h3>
+    </section>
+</body>
+<script>
+    document.querySelectorAll(".btn").forEach(button => {
+        button.addEventListener("click", function (e) {
+            let num1 = document.getElementById("num1").value;
+            let num2 = document.getElementById("num2").value;
+            let operator = e.target.id;
+            if (operator === "clear") {
+                document.getElementById("num1").value = "";
+                document.getElementById("num2").value = "";
+                document.getElementById("result").textContent = "";
+                return;
+            }
+            if (num1 === "" || num2 === "") {
+                document.getElementById("result").textContent = "Enter Two Numbers";
+                return;
+            }
+            if (operator === "/" && Number(num2) === 0) {
+                document.getElementById("result").textContent = "Cannot divide by Zero";
+                return;
+            }
+            let total;
+            if (operator === "+") {
+                total = Number(num1) + Number(num2);
+            }
+            else if (operator === "-") {
+                total = Number(num1) - Number(num2);
+            }
+            else if (operator === "*") {
+                total = Number(num1) * Number(num2);
+            }
+            else if (operator === "/") {
+                total = Number(num1) / Number(num2);
+            }
+            else if (operator === "%") {
+                total = Number(num1) % Number(num2);
+            }
+            document.getElementById("result").textContent = total;
+        });
+    });
+</script>
+
+</html>
