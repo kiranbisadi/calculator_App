@@ -5,22 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            border: 2px solid black;
+            border-radius: 15px;
+            margin: 15px;
+            padding: 10px;
+            background: lightsteelblue;
+            text-align: center;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+        }
+
+        input {
+            margin-top: 25px;
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        .symbols {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold; text-align: center;
+        }
+
+        .button:hover {
+            transform: scale(2.0);
+        }
+
+        .calculator {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
 
 <body>
-    <section>
-        <h1>Simple Calculator</h1>
-        <input placeholder="Enter your Number" id="num1">
-        <input placeholder="Enter your number" id="num2">
-        <button class="btn" id="+">+</button>
-        <button class="btn" id="-">-</button>
-        <button class="btn" id="*">*</button>
-        <button class="btn" id="/">/</button>
-        <button class="btn" id="%">%</button>
-        <!-- <button class="btn" id="square">(²)</button>
-        <button class="btn" id="cube">(³)</button> -->
-        <button class="btn" id="clear">Clear</button>
-        <h3 id="result"></h3>
+    <section class="calculator">
+        <h1 class="hero">Simple Calculator</h1>
+
+        <input placeholder="Enter First Number" id="num1">
+        <input placeholder="Enter Second number" id="num2">
+        <br />
+        
+        <input id="result" readonly placeholder="result">
+    
+        <div class="symbols">
+            <button class="btn btn-info" id="add">+</button>
+            <button class="btn btn-info" id="sub">-</button>
+            <button class="btn btn-info" id="mul">*</button>
+            <button class="btn btn-info" id="div">/</button>
+            <button class="btn btn-info" id="mod">%</button>
+            <!-- <button class="btn btn-primary" id="square">(²)</button>
+        <button class="btn btn-primary" id="cube">(³)</button> -->
+            <button class="btn btn-danger" id="clear">Clear</button>
+        </div>
     </section>
 </body>
 <script>
@@ -32,34 +93,34 @@
             if (operator === "clear") {
                 document.getElementById("num1").value = "";
                 document.getElementById("num2").value = "";
-                document.getElementById("result").textContent = "";
+                document.getElementById("result").value = "";
                 return;
             }
             if (num1 === "" || num2 === "") {
-                document.getElementById("result").textContent = "Enter Two Numbers";
+                document.getElementById("result").value = "Enter Two Numbers";
                 return;
             }
-            if (operator === "/" && Number(num2) === 0) {
-                document.getElementById("result").textContent = "Cannot divide by Zero";
+            if (operator === "div" && Number(num2) === 0) {
+                document.getElementById("result").value = "Cannot divide by Zero";
                 return;
             }
             let total;
-            if (operator === "+") {
+            if (operator === "add") {
                 total = Number(num1) + Number(num2);
             }
-            else if (operator === "-") {
+            else if (operator === "sub") {
                 total = Number(num1) - Number(num2);
             }
-            else if (operator === "*") {
+            else if (operator === "mul") {
                 total = Number(num1) * Number(num2);
             }
-            else if (operator === "/") {
+            else if (operator === "div") {
                 total = Number(num1) / Number(num2);
             }
-            else if (operator === "%") {
+            else if (operator === "mod") {
                 total = Number(num1) % Number(num2);
             }
-            document.getElementById("result").textContent = total;
+            document.getElementById("result").value = total;
         });
     });
 </script>
